@@ -7,6 +7,7 @@ def index():
 
 @app.route('/dashboard')
 def dashboard():
+    #Información en forma de variables para pasar a la plantilla html.
     nombre_admin = "Francisco"
     tienda = "TecnoMarket"
     fecha = date.today()
@@ -40,6 +41,7 @@ def dashboard():
         {'cliente': 'Ana', 'total': 39.90, 'fecha': '22-5-2025'},
         {'cliente': 'Juan', 'total': 45.49, 'fecha': '1-4-2025'}
     ]
+    #Calculo las variables de la información que pide en la práctica para pasarla a la plantilla.
     total_stock = 0
     for producto in productos:
         total_stock += producto['stock']
@@ -49,7 +51,19 @@ def dashboard():
         if cliente['activo']:
             total_activos += 1
 
-    return render_template('dashboard.html',nombre_admin=nombre_admin,tienda=tienda,fecha=fecha,productos=productos,clientes=clientes,pedidos=pedidos,total_stock=total_stock, total_activos=total_activos)
+    cliente_max = ''
+    pedido_max = 0
+    for cliente in clientes:
+        if cliente['pedidos'] > pedido_max:
+            pedido_max = cliente['pedidos']
+            cliente_max = cliente['nombre']
+
+    ingreso_total = 0
+    for pedido in pedidos:
+        ingreso_total += pedido['total']
+
+    #Se devuelve a la plantilla con el return toda la información necesaria en la plantilla html.
+    return render_template('dashboard.html',nombre_admin=nombre_admin,tienda=tienda,fecha=fecha,productos=productos,clientes=clientes,pedidos=pedidos,total_stock=total_stock, total_activos=total_activos, cliente_max=cliente_max, ingreso_total=ingreso_total)
 
 if __name__ == '__main__':
     app.run()
