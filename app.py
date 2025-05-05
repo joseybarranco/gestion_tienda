@@ -40,7 +40,16 @@ def dashboard():
         {'cliente': 'Ana', 'total': 39.90, 'fecha': '22-5-2025'},
         {'cliente': 'Juan', 'total': 45.49, 'fecha': '1-4-2025'}
     ]
-    return render_template('dashboard.html')
+    total_stock = 0
+    for producto in productos:
+        total_stock += producto['stock']
+
+    total_activos = 0
+    for cliente in clientes:
+        if cliente['activo']:
+            total_activos += 1
+
+    return render_template('dashboard.html',nombre_admin=nombre_admin,tienda=tienda,fecha=fecha,productos=productos,clientes=clientes,pedidos=pedidos,total_stock=total_stock, total_activos=total_activos)
 
 if __name__ == '__main__':
     app.run()

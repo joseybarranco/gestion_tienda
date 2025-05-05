@@ -2,9 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Tienda Online</title>
 </head>
 <body>
+    <h1>Tienda Online</h1>
+    <h2>Bienvenido, {{ nombre_admin }} a la tienda {{ tienda }}. Hoy es día {{ fecha }}.</h2>
+    <h3>Productos:</h3>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Categoría</th>
+    </tr>
+    {% for producto in productos %}
+        <tr>
+            <td>{{ producto['nombre'] }}</td>
+            <td>{{ producto['precio'] }}</td>
+            {% if producto['stock'] == 0 %}
+                <td>Agotado</td>
+            {% else %}
+                <td>{{ producto['stock'] }}</td>
+            {% endif %}
 
+            <td>{{ producto['categoría'] }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan = '3'>TOTAL STOCK</td>
+        <td>{{ total_stock }}</td>
+    </tr>
+</table>
+    <h3>Clientes:</h3>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>E-mail</th>
+        <th>Activo</th>
+        <th>Pedidos</th>
+    </tr>
+    {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente['nombre'] }}</td>
+            <td>{{ cliente['email'] }}</td>
+            {% if cliente['activo'] == True %}
+                <td>Sí</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+            <td>{{ cliente['pedidos'] }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan = '3'>Clientes Activos</td>
+        <td>{{ total_activos }}</td>
+    </tr>
+</table>
 </body>
 </html>
