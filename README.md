@@ -12,6 +12,6 @@
 # Instrucciones.
     -Crear una cuenta en la página de github y crear el repositorio para tu proyecto.
     -Abrir la aplicación de github desktop y clonar el proyecto de tu repositorio de github.
-    -Abrir la carpeta de tu repositorio con Pycharm y descargar las dependencias necesarias para empezar a trabajar.(flask entre otras. Para ello utilizaremos el comando pip install requirememts.txt)
+    -Abrir la carpeta de tu repositorio con Pycharm y descargar las dependencias necesarias para empezar a trabajar.(flask entre otras. Para ello utilizaremos el comando pip install requirements.txt)
     -Desarrolla el proyecto para crear la página web con python comprobando el resultado en tu navegador web con el servidor local que te proporciona en la ruta "/dashboard".
     
