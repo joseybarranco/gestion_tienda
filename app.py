@@ -1,8 +1,5 @@
 from datetime import date
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
 from flask import Flask, render_template
 app = Flask(__name__)
 @app.route('/')
@@ -11,43 +8,15 @@ def index():
 
 @app.route('/dashboard')
 def dashboard():
-<<<<<<< HEAD
-=======
+
     #Información en forma de variables para pasar a la plantilla html.
->>>>>>> origin/main
+
     nombre_admin = "Francisco"
     tienda = "TecnoMarket"
     fecha = date.today()
     productos = [
-<<<<<<< HEAD
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        {'nombre': 'raton','precio': 7.55,'stock': 4,'categoria':'electronica'},
-        ]
-    clientes = [
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-        {'nombre': 'Fran','email': 'fran@gmail.com','activo': True,'pedidos': 3},
-    ]
-    pedidos = [
-        {'cliente':'Fran','total':15,'fecha':'12-12-24'}
-    ]
-    return render_template('dashboard.html')
-=======
+
+
         {'nombre': 'ratón', 'precio': 7.99, 'stock': 5, 'categoría': 'electrónica'},
         {'nombre': 'teclado', 'precio': 18.50, 'stock': 7, 'categoría': 'electrónica'},
         {'nombre': 'monitor', 'precio': 150.99, 'stock': 0, 'categoría': 'electrónica'},
@@ -100,7 +69,6 @@ def dashboard():
 
     #Se devuelve a la plantilla con el return toda la información necesaria en la plantilla html.
     return render_template('dashboard.html',nombre_admin=nombre_admin,tienda=tienda,fecha=fecha,productos=productos,clientes=clientes,pedidos=pedidos,total_stock=total_stock, total_activos=total_activos, cliente_max=cliente_max, ingreso_total=ingreso_total)
->>>>>>> origin/main
 
 if __name__ == '__main__':
     app.run()
