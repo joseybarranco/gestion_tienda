@@ -1,6 +1,6 @@
 from datetime import date
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 @app.route('/')
 def index():
@@ -15,8 +15,6 @@ def dashboard():
     tienda = "TecnoMarket"
     fecha = date.today()
     productos = [
-
-
         {'nombre': 'ratón', 'precio': 7.99, 'stock': 5, 'categoría': 'electrónica'},
         {'nombre': 'teclado', 'precio': 18.50, 'stock': 7, 'categoría': 'electrónica'},
         {'nombre': 'monitor', 'precio': 150.99, 'stock': 0, 'categoría': 'electrónica'},
@@ -70,5 +68,20 @@ def dashboard():
     #Se devuelve a la plantilla con el return toda la información necesaria en la plantilla html.
     return render_template('dashboard.html',nombre_admin=nombre_admin,tienda=tienda,fecha=fecha,productos=productos,clientes=clientes,pedidos=pedidos,total_stock=total_stock, total_activos=total_activos, cliente_max=cliente_max, ingreso_total=ingreso_total)
 
+
+@app.route('/productos', methods=['GET','POST'])
+def productos():
+    if request.method == 'POST':
+        nombre_formulario = request.form.get('nombre')
+        precio_formulario = request.form.get('precio')
+        stock_formulario = request.form.get('stock')
+        categoria_formulario = request.form.get('categoria')
+        diccionario_producto_nuevo = {}
+        diccionario_producto_nuevo['nombre']=nombre_formulario
+        diccionario_producto_nuevo['precio']=precio_formulario
+        diccionario_producto_nuevo['stock']=stock_formulario
+        diccionario_producto_nuevo['categoría']=categoria_formulario
+        productos.append(diccionario_producto_nuevo)
+    return render_template('productos.html')
 if __name__ == '__main__':
     app.run()
