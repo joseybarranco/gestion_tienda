@@ -7,6 +7,19 @@ app = Flask(__name__)
 diccionario_producto_nuevo = {}
 
 
+productos = [
+                {'nombre': 'ratón', 'precio': 7.99, 'stock': 5, 'categoría': 'electrónica'},
+                {'nombre': 'teclado', 'precio': 18.50, 'stock': 7, 'categoría': 'electrónica'},
+                {'nombre': 'monitor', 'precio': 150.99, 'stock': 0, 'categoría': 'electrónica'},
+                {'nombre': 'silla', 'precio': 9.50, 'stock': 10, 'categoría': 'muebles'},
+                {'nombre': 'mesa', 'precio': 39.99, 'stock': 4, 'categoría': 'muebles'},
+                {'nombre': 'sillon-relax', 'precio': 125.50, 'stock': 1, 'categoría': 'muebles'},
+                {'nombre': 'camiseta', 'precio': 19.50, 'stock': 8, 'categoría': 'ropa'},
+                {'nombre': 'pantalón', 'precio': 24.50, 'stock': 2, 'categoría': 'ropa'},
+                {'nombre': 'calcetines', 'precio': 3.99, 'stock': 20, 'categoría': 'ropa'},
+                {'nombre': 'consola-Switch', 'precio': 399.00, 'stock': 0, 'categoría': 'consola'},
+                ]
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -19,19 +32,8 @@ def dashboard():
     nombre_admin = "Francisco"
     tienda = "TecnoMarket"
     fecha = date.today()
-    productos= [
-        {'nombre': 'ratón', 'precio': 7.99, 'stock': 5, 'categoría': 'electrónica'},
-        {'nombre': 'teclado', 'precio': 18.50, 'stock': 7, 'categoría': 'electrónica'},
-        {'nombre': 'monitor', 'precio': 150.99, 'stock': 0, 'categoría': 'electrónica'},
-        {'nombre': 'silla', 'precio': 9.50, 'stock': 10, 'categoría': 'muebles'},
-        {'nombre': 'mesa', 'precio': 39.99, 'stock': 4, 'categoría': 'muebles'},
-        {'nombre': 'sillon-relax', 'precio': 125.50, 'stock': 1, 'categoría': 'muebles'},
-        {'nombre': 'camiseta', 'precio': 19.50, 'stock': 8, 'categoría': 'ropa'},
-        {'nombre': 'pantalón', 'precio': 24.50, 'stock': 2, 'categoría': 'ropa'},
-        {'nombre': 'calcetines', 'precio': 3.99, 'stock': 20, 'categoría': 'ropa'},
-        {'nombre': 'consola-Switch', 'precio': 399.00, 'stock': 0, 'categoría': 'consola'}
-    ]
-    productos.append(diccionario_producto_nuevo)
+
+
     clientes = [
         {'nombre': 'Fran', 'email': 'fran@gmail.com', 'activo': True, 'pedidos': 3},
         {'nombre': 'José', 'email': 'jose@gmail.com', 'activo': False, 'pedidos': 1},
@@ -78,21 +80,22 @@ def dashboard():
 
 
 @app.route('/productos', methods=['GET', 'POST'])
-def productos():
+def product():
+    global productos
+    global diccionario_producto_nuevo
     if request.method == 'POST':
         nombre_formulario = request.form.get('nombre')
-        precio_formulario = request.form.get('precio')
-        stock_formulario = request.form.get('stock')
+        precio_formulario = float(request.form.get('precio'))
+        stock_formulario = int(request.form.get('stock'))
         categoria_formulario = request.form.get('categoria')
-        diccionario_producto_nuevo = {}
+
         diccionario_producto_nuevo['nombre'] = nombre_formulario
         diccionario_producto_nuevo['precio'] = precio_formulario
         diccionario_producto_nuevo['stock'] = stock_formulario
         diccionario_producto_nuevo['categoría'] = categoria_formulario
-
+        productos.append(diccionario_producto_nuevo)
     return render_template('productos.html')
 
 
-print(diccionario_producto_nuevo)
 if __name__ == '__main__':
     app.run()
