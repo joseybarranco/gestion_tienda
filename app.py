@@ -1,12 +1,16 @@
 from datetime import date
-
+from pymongo import MongoClient
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+cliente = MongoClient('mongodb+srv://jbarrui587:FbNkbcbiV7ye8omk@tutorial.vqartjr.mongodb.net/')
+
+app.db = cliente.gestion_tienda
+
 diccionario_producto_nuevo = {}
 
-
+productos = [producto for producto in app.db.productos.find({})]
 productos = [
                 {'nombre': 'ratón', 'precio': 7.99, 'stock': 5, 'categoría': 'electrónica'},
                 {'nombre': 'teclado', 'precio': 18.50, 'stock': 7, 'categoría': 'electrónica'},
@@ -94,6 +98,7 @@ def product():
         diccionario_producto_nuevo['stock'] = stock_formulario
         diccionario_producto_nuevo['categoría'] = categoria_formulario
         productos.append(diccionario_producto_nuevo)
+        app.db.productos.insert_one(diccionario_producto_nuevo)
     return render_template('productos.html')
 
 
