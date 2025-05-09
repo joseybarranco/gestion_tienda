@@ -48,7 +48,7 @@
     </tr>
     {% for cliente in clientes %}
         <tr>
-            <td>{{ cliente['nombre'] }}.upper()</td>
+            <td>{{ cliente['nombre'].upper() }}</td>
             <td>{{ cliente['email'] }}</td>
             {% if cliente['activo'] == True %}
                 <td>Sí</td>
@@ -64,7 +64,7 @@
     </tr>
     <tr>
         <td colspan = '3'>CLIENTE CON MÁS PEDIDOS:</td>
-        <td>{{ cliente_max }}.upper()</td>
+        <td>{{ cliente_max.upper() }}</td>
     </tr>
 </table>
 <h3>Pedidos:</h3>
